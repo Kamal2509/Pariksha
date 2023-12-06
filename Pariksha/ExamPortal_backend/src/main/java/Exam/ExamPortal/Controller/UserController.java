@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ import Exam.ExamPortal.model.UserRole;
 public class UserController {
 	@Autowired
 private UserService userService;
-
+	
 @PostMapping("/")
 public User createUser(@RequestBody User user) throws Exception{
 	
@@ -49,6 +50,11 @@ public User getuser(@PathVariable("username") String username) {
 @DeleteMapping("/{userId}")
 public void deleteUser(@PathVariable("userId") Long userId) {
 	this.userService.deleteUser(userId);
+}
+
+@GetMapping("/")
+public String getuser() {
+	return "this is home page";
 }
 
 }

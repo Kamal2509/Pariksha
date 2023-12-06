@@ -1,13 +1,13 @@
-
-import './App.css';
-import { Login } from './Pages/Login';
-import { Signup } from './Pages/Signup';
+import { Footer } from './Components/Footer';
+import { Header } from './Components/Header';
+import { AllRoutes } from './Routes/AllRoutes';
 
 function App() {
   return (
     <div >
-      {/* <Signup/> */}
-      <Login/>
+      <Header/>
+     <AllRoutes/>
+     <Footer/>
     </div>
   );
 }

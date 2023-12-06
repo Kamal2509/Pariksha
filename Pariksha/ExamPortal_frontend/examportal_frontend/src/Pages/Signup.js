@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import user from "../Assets/Icons/user.png"
+import { NavLink } from "react-router-dom";
 
 export const Signup = () => {
     const [firstname, setfirstname] = useState("");
@@ -41,8 +42,8 @@ export const Signup = () => {
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="flex items-center mb-6 text-2xl font-bold  text-gray-900 dark:text-white">
+            <div className="flex flex-col items-center justify-center  mt-14 px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div className="flex items-center mt-26 mb-6 text-2xl font-bold  text-gray-900 dark:text-white">
                     <img className="w-10 h-10 mr-2" src={user} alt="logo" />
                     Create Account
                 </div>
@@ -98,7 +99,7 @@ export const Signup = () => {
 
                             <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                                Already have an account? <NavLink to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</NavLink>
                             </p>
                         </form>
                     </div>
