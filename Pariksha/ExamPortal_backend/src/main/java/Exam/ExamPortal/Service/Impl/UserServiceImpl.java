@@ -2,8 +2,10 @@ package Exam.ExamPortal.Service.Impl;
 
 import java.util.Set;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import Exam.ExamPortal.Service.UserService;
@@ -22,6 +24,7 @@ private RoleRepository roleRepository;
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) throws Exception {
 		User local = userRepository.findByUsername(user.getUsername());
+		
 		if(local!=null) {
 			throw new Exception("User Already Exist !!");
 		}
@@ -31,6 +34,7 @@ private RoleRepository roleRepository;
 				roleRepository.save(ur.getRole());
 			}
 			user.getUserRoles().addAll(userRoles);
+			user.setPassword(passwordEncoder().encode(user.getPassword()));
 			local=this.userRepository.save(user);
 		}
 		
@@ -49,5 +53,8 @@ private RoleRepository roleRepository;
 		
 	}
 	
-
+	 @Bean
+	    public PasswordEncoder passwordEncoder() {
+	        return new BCryptPasswordEncoder();
+	    }
 }

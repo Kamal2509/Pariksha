@@ -6,11 +6,11 @@ import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import Exam.ExamPortal.model.Authority;
 import Exam.ExamPortal.model.User;
 
+@SuppressWarnings("serial")
 public class CustomUserDetails implements UserDetails {
 private User user;
 
