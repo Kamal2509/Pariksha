@@ -27,9 +27,9 @@ const Navigate=useNavigate();
     return Navigate(`/search?q=${queryTerm}`);
    }
   return (
-    <header className="">
-      <nav className="bg-white border-b-2 border-gray-200 fixed top-0 left-0 right-0 dark:bg-gray-900 dark:border-b-1 dark:bordergray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <header className="sticky top-0 ">
+      <nav className="bg-white border-b-2 border-gray-200  dark:bg-gray-900 dark:border-b-1 dark:bordergray-900">
+        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-6 py-4">
           <NavLink to="/" className="flex items-center">
             <img src={Logo} className="h-8 mr-3" alt="Pariksha Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Pariksha</span>

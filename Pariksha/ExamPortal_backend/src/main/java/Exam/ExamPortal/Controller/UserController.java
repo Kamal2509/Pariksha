@@ -1,5 +1,6 @@
 package Exam.ExamPortal.Controller;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import Exam.ExamPortal.Security.JwtHelper;
+import Exam.ExamPortal.Service.CustomUserDetails;
 import Exam.ExamPortal.Service.UserService;
 import Exam.ExamPortal.Service.Impl.UserDetailsServiceImpl;
 import Exam.ExamPortal.model.JwtRequest;
@@ -31,18 +34,18 @@ import Exam.ExamPortal.model.UserRole;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/home")
+@RequestMapping("/")
 public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping("/signup")
+	@PostMapping("signup")
 	public User createUser(@RequestBody User user) throws Exception {
 
 		Role role = new Role();
 		role.setRoleId(45L);
 		role.setRolename("Normal");
-
+		
 		UserRole userRole = new UserRole();
 		userRole.setUser(user);
 		userRole.setRole(role);
@@ -59,14 +62,20 @@ public class UserController {
 		return this.userService.getUser(username);
 	}
 
-	@DeleteMapping("/user/{userId}")
+	@DeleteMapping("user/{userId}")
 	public void deleteUser(@PathVariable("userId") Long userId) {
 		this.userService.deleteUser(userId);
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String getuser() {
 		return "this is home page";
+	}
+
+	@GetMapping("currentUser")
+	public CustomUserDetails getcurrentuser(Principal principle) {
+		System.out.println("what is principle"+" "+principle);
+		return (CustomUserDetails)this.userDetailsService.loadUserByUsername(principle.getName());
 	}
 
 //
@@ -79,22 +88,22 @@ public class UserController {
 	@Autowired
 	private JwtHelper helper;
 
-	@PostMapping("/login")
+	@PostMapping("login")
 	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
 
 		this.doAuthenticate(request.getUsername(), request.getPassword());
 
 		UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
-		
+
 		String token = this.helper.generateToken(userDetails);
-		
+
 		JwtResponse response = new JwtResponse(token);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	private void doAuthenticate(String username, String password) {
-		System.out.println("Authenticate"+" "+username+" "+password);
+		//System.out.println("Authenticate" + " " + username + " " + password);
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username,
 				password);
 		try {

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import user from "../Assets/Icons/user.png"
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
     const [firstname, setfirstname] = useState("");
@@ -10,27 +10,28 @@ export const Signup = () => {
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
     const [phone, setphone] = useState("");
-
+    const navigate = useNavigate()
 
     async function submit(event) {
         event.preventDefault();
         try {
-        await axios.post("http://localhost:8080/user/",
-            {
-                firstname: firstname,
-                lastname: lastname,
-                username: username,
-                password: password,
-                email: email,
-                phone: phone
-            });
-        alert("User Resistration Successful");
-        setfirstname("");
-        setlastname("");
-        setusername("");
-        setpassword("");
-        setemail("");
-        setphone("");
+            await axios.post("/signup",
+                {
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                });
+            alert("User Resistration Successful");
+            setfirstname("");
+            setlastname("");
+            setusername("");
+            setpassword("");
+            setemail("");
+            setphone("");
+            navigate("/login")
         }
         catch (err) {
             alert("user name exist !!");
@@ -78,7 +79,7 @@ export const Signup = () => {
                             <div>
                                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                                 <input type="email" name="email" value={email} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com"
-                                    onChange={(event) => { setemail(event.target.value) }} required/>
+                                    onChange={(event) => { setemail(event.target.value) }} required />
                             </div>
                             <div>
                                 <label for="phonenumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>

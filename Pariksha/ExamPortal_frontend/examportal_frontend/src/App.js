@@ -1,13 +1,19 @@
 import { Footer } from './Components/Footer';
 import { Header } from './Components/Header';
 import { AllRoutes } from './Routes/AllRoutes';
+import Axios from 'axios';
+
+Axios.defaults.baseURL = 'http://localhost:8080';
+
+
+
 
 function App() {
   return (
     <div >
-      <Header/>
-     <AllRoutes/>
-     <Footer/>
+      <Header />
+      <AllRoutes />
+      <Footer />
     </div>
   );
 }

@@ -24,11 +24,12 @@ public class SecurityConfig {
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    	//Configuration for access different Url
 	    	http.csrf(csrf -> csrf.disable())
-	    	.cors(cors->cors.disable())
+
             .authorizeHttpRequests(auth->
-            auth.requestMatchers("/home/user/**").authenticated()
-                 .requestMatchers("/home/login").permitAll()
-                 .requestMatchers("/home/signup").permitAll()
+            auth.requestMatchers("/currentUser").authenticated()
+                 .requestMatchers("/login").permitAll()
+                 .requestMatchers("/").permitAll()
+                 .requestMatchers("/signup").permitAll()
                  .anyRequest().authenticated()
             		)
                   .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
