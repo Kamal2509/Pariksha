@@ -69,7 +69,7 @@ export const Login = () => {
     localStorage.setItem('username', user.data.username);
     localStorage.setItem('userRole', user.data.authorities[0].authority);
     if (user.data.authorities[0].authority === 'Admin') {
-      navigate("dashboard")
+      navigate("/admin")
     }
     else if (user.data.authorities[0].authority === 'Normal') {
       navigate("userProfile")
@@ -92,7 +92,7 @@ export const Login = () => {
 
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 ">
+    <section className="bg-gray-50 dark:bg-gray-900 max-w-screen-2xl flex flex-wrap items-center justify-center mx-auto px-6 py-4 text-justify">
       <div className="flex flex-col items-center  px-6 py-6 mx-auto md:h-screen lg:py-0">
         <div className="flex items-center mt-20 mb-6 text-2xl font-bold text-gray-900 dark:text-white">
           <img className="w-10 h-10 mr-2" src={loginpic} alt="logo" />

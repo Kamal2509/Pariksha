@@ -38,11 +38,8 @@ export const Signup = () => {
         }
     }
 
-
-
-
     return (
-        <section className="bg-gray-50 dark:bg-gray-900">
+        <section className="bg-gray-50 dark:bg-gray-900 max-w-screen-2xl flex flex-wrap items-center justify-center mx-auto px-6 py-4 text-justify">
             <div className="flex flex-col items-center justify-center  mt-14 px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="flex items-center mt-26 mb-6 text-2xl font-bold  text-gray-900 dark:text-white">
                     <img className="w-10 h-10 mr-2" src={user} alt="logo" />
