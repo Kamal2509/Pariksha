@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from "axios"
 import loginpic from '../Assets/Icons/loginuser.png'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
@@ -33,7 +33,7 @@ export const Login = () => {
       // user = await axios.get("/login");
 
       //redirect...ADMIN:admin dashboard
-      console.log(localStorage.getItem('userRole') === 'Admin')
+    //  console.log(localStorage.getItem('userRole') === 'Admin')
       
       //console.log(localStorage.getItem('user').authorities[0].authority)
       //redirect...Normal:normal dashboard
@@ -66,8 +66,9 @@ export const Login = () => {
   //to get current user
   async function getCurrentUser() {
     user = await axios.get("/currentUser");
-    localStorage.setItem('username', user.data.username);
-    localStorage.setItem('userRole', user.data.authorities[0].authority);
+    console.log(user)
+    localStorage.setItem('user', JSON.stringify(user.data));
+    localStorage.setItem('userRole', user.data.authorities);
     if (user.data.authorities[0].authority === 'Admin') {
       navigate("/admin")
     }
@@ -75,7 +76,7 @@ export const Login = () => {
       navigate("userProfile")
     }
     //console.log(user.data.authorities[0].authority);
-    //return user;
+    return user;
   }
 
   // logout user

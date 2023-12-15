@@ -12,20 +12,20 @@ import Exam.ExamPortal.model.User;
 
 @SuppressWarnings("serial")
 public class CustomUserDetails implements UserDetails {
-private User user;
+	private User user;
 
 	public CustomUserDetails(User user) {
-	super();
-	this.user = user;
-}
+		super();
+		this.user = user;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<Authority> set=new HashSet<Authority>();
-		this.user.getUserRoles().forEach(userRole->{
-			set.add(new Authority(userRole.getRole().getRolename()));		
+		Set<Authority> set = new HashSet<Authority>();
+		this.user.getUserRoles().forEach(userRole -> {
+			set.add(new Authority(userRole.getRole().getRolename()));
 		});
-		
+
 		return set;
 	}
 
@@ -39,6 +39,24 @@ private User user;
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return user.getUsername();
+	}
+
+	public String getFirstname() {
+		// TODO Auto-generated method stub
+		return user.getFirstname();
+	}
+
+	public String getLastname() {
+		// TODO Auto-generated method stub
+		return user.getLastname();
+	}
+	public String getPhone() {
+		// TODO Auto-generated method stub
+		return user.getPhone();
+	}
+	public long getUserId() {
+		// TODO Auto-generated method stub
+		return user.getId();
 	}
 
 	@Override

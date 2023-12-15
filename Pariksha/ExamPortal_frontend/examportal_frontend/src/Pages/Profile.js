@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 export const Profile = () => {
+  let currentuser=JSON.parse(localStorage.getItem('user'));
+  
   return (
-
     <section className="  bg-gray-50 dark:bg-gray-900 max-w-screen-2xl flex items-center justify-center mx-auto  text-justify">
       <SideNavbar />
       <div class="w-full px-6   min-h-screen flex-wrap items-center justify-center bg-white border border-gray-200  shadow text-center dark:bg-gray-800 dark:border-gray-700 sm:p-0">
@@ -15,12 +16,12 @@ export const Profile = () => {
             <FontAwesomeIcon icon={faUser} className="w-16 h-16" />
           </div>
         </div>
-        <h5 className="mb-2 text-2xl font-bold  text-gray-900 dark:text-white">Kamal Sharma</h5>
+        <h5 className="mb-2 text-2xl font-bold  text-gray-900 dark:text-white">{currentuser.firstname?currentuser.firstname:'user'} {currentuser.lastname}</h5>
 
         {/* table data  */}
-        <div className="w-1/3 mx-auto my-4 text shadow-md  sm:rounded-lg">
+        <div className="w-1/3 mx-auto flex items-center justify-center my-4 mb-8 text shadow-md">
 
-          <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
+          <table className="w-full text-sm text-center  text-gray-500 dark:text-gray-400  ">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
             </thead>
@@ -30,7 +31,7 @@ export const Profile = () => {
                   Username
                 </th>
                 <td className="px-6 py-4">
-                  kamal
+                  {currentuser.username}
                 </td>
               </tr>
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -38,7 +39,7 @@ export const Profile = () => {
                   userid
                 </th>
                 <td className="px-6 py-4">
-                  123
+                  {currentuser.userId}
                 </td>
               </tr>
               <tr className="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -46,7 +47,7 @@ export const Profile = () => {
                   Phone
                 </th>
                 <td className="px-6 py-4">
-                  6398847146
+                 {currentuser.phone}
                 </td>
               </tr>
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -56,14 +57,13 @@ export const Profile = () => {
                 <td className="px-6 py-4">
                   Admin
                 </td>
-
               </tr>
               <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Status
                 </th>
                 <td className="px-6 py-4">
-                  Active
+                  {currentuser.enabled?'Active':'Inactive'}
                 </td>
               </tr>
             </tbody>
