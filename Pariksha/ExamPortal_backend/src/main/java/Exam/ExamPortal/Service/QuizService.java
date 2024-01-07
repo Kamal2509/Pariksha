@@ -10,7 +10,7 @@ public interface QuizService {
 	
 	public Quiz updateQuiz(Quiz quiz);
 	
-	public Set<Quiz> getQuizzeSet();
+	public Set<Quiz> getQuizzeS();
 	
 	public Quiz getQuiz(Long quizId);
 	

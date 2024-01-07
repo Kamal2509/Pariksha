@@ -105,4 +105,12 @@ public class Quiz {
 		this.active = active;
 	}
 
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
+
 }

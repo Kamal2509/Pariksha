@@ -26,7 +26,7 @@ public class QuizServiceImpl implements QuizService{
 	}
 
 	@Override
-	public Set<Quiz> getQuizzeSet() {
+	public Set<Quiz> getQuizzeS() {
 	return new LinkedHashSet<Quiz>(this.quizRepository.findAll());
 	}
 
@@ -37,8 +37,10 @@ public class QuizServiceImpl implements QuizService{
 
 	@Override
 	public void deleteQuiz(Long quizId) {
-		this.quizRepository.deleteById(quizId);
-		
+		//this.quizRepository.deleteById(quizId);
+		Quiz quiz1= new Quiz();
+		quiz1.setQid(quizId);
+		this.quizRepository.delete(quiz1);
 	}
 
 }
