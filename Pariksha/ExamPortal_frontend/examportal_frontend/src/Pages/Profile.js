@@ -7,9 +7,9 @@ export const Profile = () => {
   let currentuser=JSON.parse(localStorage.getItem('user'));
   
   return (
-    <section className="  bg-gray-50 dark:bg-gray-900 max-w-screen-2xl flex items-center justify-center mx-auto  text-justify">
+    <section className="  bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-2xl flex items-center justify-center mx-auto  text-justify">
       <SideNavbar />
-      <div class="w-full px-6   min-h-screen flex-wrap items-center justify-center bg-white border border-gray-200  shadow text-center dark:bg-gray-800 dark:border-gray-700 sm:p-0">
+      <div class="w-full px-6   min-h-screen flex-wrap items-center justify-center  shadow text-center dark:bg-gray-800 dark:border-gray-700 sm:p-0">
         <h5 class="mt-10 mb-4 text-2xl font-bold  text-gray-900 dark:text-white">Profile Details</h5>
         <div className="flex items-center justify-center">
           <div className="w-24 h-24 border-2 border-black rounded-full flex items-center justify-center">
@@ -69,8 +69,8 @@ export const Profile = () => {
             </tbody>
           </table>
         </div>
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update</button>
-        <button type="button" class="text-white bg-primary-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Share</button>
+        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update</button>
+        <button type="button" className="text-white bg-primary-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Share</button>
       </div>
 
     </section>
