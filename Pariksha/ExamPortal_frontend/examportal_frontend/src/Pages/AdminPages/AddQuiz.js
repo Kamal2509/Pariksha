@@ -23,7 +23,7 @@ export const AddQuiz = () => {
             try {
                 const response = await axios.get("/category/");
                 setCategories(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
@@ -64,18 +64,18 @@ export const AddQuiz = () => {
         }
     }
     return (
-        <section className="bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-2xl  mx-auto  text-justify min-h-screen">
+        <section className="bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-lg  mx-auto  text-justify min-h-screen">
             <SideNavbar />
-            <form className='max-w-6xl mx-auto p-4 text-xl font-bold bg-white border text-gray-700 dark:text-white' onSubmit={submit} >
+            <form className='max-w-xl mx-auto p-4 text-xl font-bold bg-white border text-gray-700 dark:text-white' onSubmit={submit} >
                 Add Quiz
                 
-                <input name='title' type='text' value={title} onChange={(event)=>{settitle(event.target.value)}} className='mt-10 block w-3/4  mx-auto text-xl font-medium border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Enter Category Title here' required />
+                <input name='title' type='text' value={title} onChange={(event)=>{settitle(event.target.value)}} className='mt-10 block w-3/4  mx-auto text-lg font-medium border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Enter Category Title here' required />
 
-                <textarea name="description" rows="4" value={description} onChange={(event)=>{setdescription(event.target.value)}} className=" mt-6 block w-3/4  mx-auto px-4  py-2 text-xl font-normal text-gray-900  border-primary-300 rounded-lg border  focus:ring-primary-500 focus:ring-1 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-gray-300" placeholder="Write Category description here..." required />
+                <textarea name="description" rows="4" value={description} onChange={(event)=>{setdescription(event.target.value)}} className=" mt-6 block w-3/4  mx-auto px-4  py-2 text-base font-normal text-gray-900  border-primary-300 rounded-lg border  focus:ring-primary-500 focus:ring-1 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-gray-300" placeholder="Write Category description here..." required />
 
                 <div className='grid grid-cols-2 gap-4 mt-4 w-3/4  mx-auto '>
-                    <input name='title' type='text' value={maxMarks} onChange={(event)=>{setmaxMarks(event.target.value)}} className='   text-xl font-normal border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Maximum Marks' required />
-                    <input name='title' type='text' value={numberofQuestions} onChange={(event)=>{setnumberofQuestions(event.target.value)}} className='  text-xl font-normal border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Number of Questions' required />
+                    <input name='title' type='text' value={maxMarks} onChange={(event)=>{setmaxMarks(event.target.value)}} className='   text-base font-normal border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Maximum Marks' required />
+                    <input name='title' type='text' value={numberofQuestions} onChange={(event)=>{setnumberofQuestions(event.target.value)}} className='  text-base font-normal border border-primary-300 rounded-md py-1 px-4 shadow-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 placeholder:text-gray-300' placeholder='Number of Questions' required />
                 </div>
                 <div className='mt-4 w-3/4  mx-autow-3/4  mx-auto'>
                     <label className="relative inline-flex items-center cursor-pointer ">

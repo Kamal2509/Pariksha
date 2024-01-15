@@ -4,7 +4,7 @@ import { SideNavbar } from '../../Components/SideNavbar'
 export const Dashboard = () => {
   return (
    
-<section className="max-w-screen-2xl mx-auto flex flex-wrap items-center justify-start px-6 py-4 text-justify">
+<section className="max-w-screen-lg mx-auto flex flex-wrap items-center justify-start px-6 py-4 text-justify">
  
 <SideNavbar/>
         

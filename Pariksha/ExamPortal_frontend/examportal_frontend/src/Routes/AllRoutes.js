@@ -9,6 +9,8 @@ import { Categories } from "../Pages/AdminPages/Categories"
 import { AddCategory } from "../Pages/AdminPages/AddCategory"
 import { Quizzes } from "../Pages/AdminPages/Quizzes"
 import { AddQuiz } from "../Pages/AdminPages/AddQuiz"
+import { UpdateQuiz } from "../Pages/AdminPages/UpdateQuiz"
+import { ViewQuizQuestions } from "../Pages/AdminPages/ViewQuizQuestions"
 
 
 export const AllRoutes = () => {
@@ -19,13 +21,15 @@ export const AllRoutes = () => {
                 <Route path="/" element={<Home />}></Route>
                 <Route path="signup" element={<Signup />}></Route>
                 <Route path="login" element={<Login />}></Route>
-            
+
                 <Route path="/admin/" element={<Dashboard />}></Route>
                 <Route path="/admin/profile" element={<Profile />}></Route>
                 <Route path="/admin/categories" element={<Categories />}></Route>
                 <Route path="/admin/addCategory" element={<AddCategory />}></Route>
                 <Route path="/admin/quizzes" element={<Quizzes />}></Route>
                 <Route path="/admin/addQuiz" element={<AddQuiz />}></Route>
+                <Route path="/admin/updateQuiz/:data" element={<UpdateQuiz/>}></Route>
+                <Route path="/admin/viewQuizQuestions/:data" element={<ViewQuizQuestions/>}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
 
             </Routes>
