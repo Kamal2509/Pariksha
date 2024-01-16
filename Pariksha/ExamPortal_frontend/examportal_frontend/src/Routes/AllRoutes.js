@@ -11,6 +11,8 @@ import { Quizzes } from "../Pages/AdminPages/Quizzes"
 import { AddQuiz } from "../Pages/AdminPages/AddQuiz"
 import { UpdateQuiz } from "../Pages/AdminPages/UpdateQuiz"
 import { ViewQuizQuestions } from "../Pages/AdminPages/ViewQuizQuestions"
+import { AddQuestion } from "../Pages/AdminPages/AddQuestion"
+import { NormalUser } from "../Pages/UserPages/NormalUser"
 
 
 export const AllRoutes = () => {
@@ -30,6 +32,9 @@ export const AllRoutes = () => {
                 <Route path="/admin/addQuiz" element={<AddQuiz />}></Route>
                 <Route path="/admin/updateQuiz/:data" element={<UpdateQuiz/>}></Route>
                 <Route path="/admin/viewQuizQuestions/:data" element={<ViewQuizQuestions/>}></Route>
+                <Route path="/admin/addQuestion/:data" element={<AddQuestion/>}></Route>
+                <Route path="/user" element={<NormalUser/>}></Route>
+               
                 <Route path="*" element={<PageNotFound />}></Route>
 
             </Routes>

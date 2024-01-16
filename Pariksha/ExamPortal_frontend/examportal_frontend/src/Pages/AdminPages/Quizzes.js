@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export const Quizzes = () => {
 
     const [quizzes, setquizzes] = useState([]);
+    const[quizui,setquizui]=useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         async function getQuizzes() {
@@ -21,17 +22,14 @@ export const Quizzes = () => {
 
         };
         getQuizzes();
-    }, [])
+    }, [quizui])
 
-    function deleteQuiz(event) {
+   async function deleteQuiz(event) {
         // event.preventDefault();
         try {
             console.log(event.target.id)
-            axios.delete(`/quiz/${event.target.id}`);
-            // axios.delete(`/quiz/${event.target.id}`);
-            // getQuizzes();
-            // setCategories(response.data);
-            // console.log(response.data);
+           await axios.delete(`/quiz/${event.target.id}`);
+            setquizui(!quizui);
         } catch (error) {
             console.error('Error deleting quiz:', error);
         }
@@ -57,6 +55,7 @@ export const Quizzes = () => {
             console.error('error updating quiz', error)
         }
     }
+  
     return (
         <section className="bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-2xl  mx-auto  text-justify min-h-screen">
             <SideNavbar />

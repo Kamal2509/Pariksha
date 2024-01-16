@@ -73,7 +73,7 @@ export const Login = () => {
       navigate("/admin")
     }
     else if (user.data.authorities[0].authority === 'Normal') {
-      navigate("userProfile")
+      navigate("/user")
     }
     //console.log(user.data.authorities[0].authority);
     return user;

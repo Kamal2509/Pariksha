@@ -8,31 +8,7 @@ import { useNavigate } from 'react-router-dom'
 export const Categories = () => {
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
-    //    var categories = [
-    //         {
-    //             cid: 1,
-    //             title: 'Programming',
-    //             description: 'this is the programming Categories'
-    //         },
-    //         {
-    //             cid: 2,
-    //             title: 'GK',
-    //             description: 'this is the gk Categories'
-    //         },
-    //         {
-    //             cid: 3,
-    //             title: 'Practice',
-    //             description: 'this is the practice Categories'
-    //         },
-    //         {
-    //             cid: 4,
-    //             title: 'Practice',
-    //             description: 'this is the practice Categories this is the practice Categories this is the practice Categories this is the practice Categories this is the practice Categories this is the practice Categories'
-    //         }
-    //     ]
-
-    // const catjson= categories.json();
-    // console.log(categories);
+  
     useEffect(() => {
         async function getCategories() {
             try {
