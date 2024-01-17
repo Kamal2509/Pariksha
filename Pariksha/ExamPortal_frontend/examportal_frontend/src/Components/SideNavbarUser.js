@@ -8,13 +8,13 @@ export const SideNavbarUser = () => {
     const [show, setshow] = useState(true)
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
-  
+
     useEffect(() => {
         async function getCategories() {
             try {
                 const response = await axios.get("/category/");
                 setCategories(response.data);
-               // console.log(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
@@ -23,19 +23,23 @@ export const SideNavbarUser = () => {
         getCategories();
     }, [])
 
-   // console.log(show)
+    function getCatType(event) {
+        navigate(`/user/${event.target.id}`)
+        console.log(event.target.id)
+    }
+
     return (
         <>
             {/* <!-- drawer init and show --> */}
             {show && <div className="fixed top-20 left-60 text-center z-50">
                 <button onClick={() => setshow(!show)} type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" className="text-white bg-primary-300  outline-black hover:text-white hover:bg-primary-700  rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"  >
-                <FontAwesomeIcon icon={faLessThan} />
+                    <FontAwesomeIcon icon={faLessThan} />
                     <span className="sr-only">Close menu</span>
                 </button>
             </div>}
             {!show && <div className="fixed top-20 left-20 text-center z-50 ">
                 <button onClick={() => setshow(!show)} type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" className="text-white bg-primary-300  outline-black hover:text-white hover:bg-primary-700 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"  >
-                <FontAwesomeIcon icon={faGreaterThan} />
+                    <FontAwesomeIcon icon={faGreaterThan} />
                     <span className="sr-only">Close menu</span>
                 </button>
             </div>}
@@ -47,30 +51,30 @@ export const SideNavbarUser = () => {
                 <div className="py-4 overflow-y-auto">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <NavLink to={"/user"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <FontAwesomeIcon icon={faHouse} />
-                                <span className="ms-3">Home</span>
-                            </NavLink>
+                            <div id={'all'} onClick={getCatType} className="flex items-center cursor-pointer p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <FontAwesomeIcon icon={faHouse} />
+                                <span id={'all'} className="ms-3">Home</span>
+                            </div>
                         </li>
-                        
-                        
-                            {
-                                  categories.map(item => (
-                                    <li>
-                                    <NavLink to={"/"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <FontAwesomeIcon icon={faLightbulb} />
-                                        <span className="flex-1 ms-3 whitespace-nowrap">{item.title}</span>
-                                        </NavLink>
+
+
+                        {
+                            categories.map(item => (
+                                <li key={item.cid}>
+                                    <div id={item.cid} onClick={getCatType} className="flex items-center p-2 cursor-pointer text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                        <FontAwesomeIcon icon={faLightbulb} />
+                                        <span id={item.cid} className="flex-1 ms-3 whitespace-nowrap">{item.title}</span>
+                                    </div>
                                 </li>
-                                  ))
-                            }
-                       
-                       
+                            ))
+                        }
+
+
                         <li>
-                        <NavLink to={"/admin/addCategory"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                            <NavLink to={"/admin/addCategory"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
-                                </NavLink>
+                            </NavLink>
                         </li>
 
                     </ul>

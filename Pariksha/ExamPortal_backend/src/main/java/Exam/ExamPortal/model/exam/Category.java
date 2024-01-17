@@ -40,6 +40,14 @@ public class Category {
 		this.description = description;
 	}
 
+	
+	public Set<Quiz> getQuizzed() {
+		return quizzed;
+	}
+	public void setQuizzed(Set<Quiz> quizzed) {
+		this.quizzed = quizzed;
+	}
+
 	public Long getCid() {
 		return cid;
 	}
@@ -63,6 +71,8 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	
 	
 	
 

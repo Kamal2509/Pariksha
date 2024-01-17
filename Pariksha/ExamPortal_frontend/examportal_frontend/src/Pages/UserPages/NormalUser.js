@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { SideNavbarUser } from '../../Components/SideNavbarUser'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 export const NormalUser = () => {
   const [quizzes, setquizzes] = useState([]);
-
+const {data}= useParams();
   const navigate = useNavigate();
   useEffect(() => {
     async function getQuizzes() {
       try {
-        const response = await axios.get("/quiz/");
+       
+        const response = await axios.get(data==='all'?'/quiz/':`/quiz/category/${data}`);
         setquizzes(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error('Error fetching quizzes:', error);
       }
 
     };
     getQuizzes();
-  }, [])
+  }, [data])
+
+  function gotoQuiz(event){
+    navigate(`/user/start/${event.target.id}`)
+  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-2xl  mx-auto  text-justify min-h-screen">
       <SideNavbarUser />
@@ -50,9 +55,9 @@ export const NormalUser = () => {
                   {item.description}
                 </div>
                 <div className='mt-2 flex flex-wrap'>
-                  <button id={item.quesid} type="button" className="text-blue-700 hover:text-white  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">View</button>
+                  <button id={item.qid} type="button" className="text-blue-700 hover:text-white  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">View</button>
 
-                  <button id={item.quesid} type="button" className="text-red-700 hover:text-white  hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Start</button>
+                  <button id={item.qid} type="button" onClick={gotoQuiz} className="text-red-700 hover:text-white  hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Start</button>
 
                   <span className="text-primary-700 bg-white focus:ring-blue-300 font-medium text-sm px-3 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">M.M.: {item.maxMarks}</span>
                   <span className="text-primary-700 bg-white  focus:ring-blue-300 font-medium  text-sm px-3 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ques: {item.numberofQuestions}</span>

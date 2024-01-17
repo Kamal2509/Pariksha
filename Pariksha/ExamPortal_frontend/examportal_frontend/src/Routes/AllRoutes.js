@@ -13,17 +13,17 @@ import { UpdateQuiz } from "../Pages/AdminPages/UpdateQuiz"
 import { ViewQuizQuestions } from "../Pages/AdminPages/ViewQuizQuestions"
 import { AddQuestion } from "../Pages/AdminPages/AddQuestion"
 import { NormalUser } from "../Pages/UserPages/NormalUser"
+import { StartQuiz } from "../Pages/UserPages/StartQuiz"
+
 
 
 export const AllRoutes = () => {
     return (
-        <main className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto min-h-screen">
+        <main className="max-w-screen-2xl min-h-screen">
             <Routes>
-
                 <Route path="/" element={<Home />}></Route>
                 <Route path="signup" element={<Signup />}></Route>
                 <Route path="login" element={<Login />}></Route>
-
                 <Route path="/admin/" element={<Dashboard />}></Route>
                 <Route path="/admin/profile" element={<Profile />}></Route>
                 <Route path="/admin/categories" element={<Categories />}></Route>
@@ -33,10 +33,9 @@ export const AllRoutes = () => {
                 <Route path="/admin/updateQuiz/:data" element={<UpdateQuiz/>}></Route>
                 <Route path="/admin/viewQuizQuestions/:data" element={<ViewQuizQuestions/>}></Route>
                 <Route path="/admin/addQuestion/:data" element={<AddQuestion/>}></Route>
-                <Route path="/user" element={<NormalUser/>}></Route>
-               
+                <Route path="/user/:data" element={<NormalUser/>}></Route>
+                <Route path="/user/start/:data" element={<StartQuiz/>}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
-
             </Routes>
         </main>
     )
