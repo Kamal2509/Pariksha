@@ -14,6 +14,7 @@ import { ViewQuizQuestions } from "../Pages/AdminPages/ViewQuizQuestions"
 import { AddQuestion } from "../Pages/AdminPages/AddQuestion"
 import { NormalUser } from "../Pages/UserPages/NormalUser"
 import { StartQuiz } from "../Pages/UserPages/StartQuiz"
+import { Quiz } from "../Pages/UserPages/Quiz"
 
 
 
@@ -35,6 +36,7 @@ export const AllRoutes = () => {
                 <Route path="/admin/addQuestion/:data" element={<AddQuestion/>}></Route>
                 <Route path="/user/:data" element={<NormalUser/>}></Route>
                 <Route path="/user/start/:data" element={<StartQuiz/>}></Route>
+                <Route path="/user/quiz/:data" element={<Quiz/>}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
         </main>

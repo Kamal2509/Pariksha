@@ -53,9 +53,9 @@ export const ViewQuizQuestions = () => {
                     </div>
                 </div>
 
-                {Questions.map(item => (
+                {Questions.map((item,index) => (
                     <div key={item.quesid} className=" mt-2 px-6 py-3 text-base bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        Q1). <span className='font-normal'>{item.content}</span>
+                        Q{index+1}). <span className='font-normal'>{item.content}</span>
                         <div className="p-3 text-sm line" >
 
                             <div className='mb-2 '>

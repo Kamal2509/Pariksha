@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import Exam.ExamPortal.Service.CategoryService;
 import Exam.ExamPortal.Service.QuizService;
 import Exam.ExamPortal.model.exam.Category;
+import Exam.ExamPortal.model.exam.Question;
 import Exam.ExamPortal.model.exam.Quiz;
 
 @RestController
@@ -70,5 +71,14 @@ public class QuizController {
 		List list= new ArrayList(quizs);
 			return ResponseEntity.ok(list);
 		}
+	
+	//evaluate Quiz
+	
+	@PostMapping("/evaluateQuiz")
+	public ResponseEntity<?> evaluateQuiz(@RequestBody List<Question> questions ){
+		System.out.println(questions);
+		return ResponseEntity.ok("got questions with answer");
+	}
+	
 	
 }
