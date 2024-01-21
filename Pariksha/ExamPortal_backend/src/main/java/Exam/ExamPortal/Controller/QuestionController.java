@@ -47,7 +47,7 @@ public class QuestionController {
 	public Question question(@PathVariable("quesid") Long quesid) {
 		return this.questionService.getQuestion(quesid);
 	}
-	
+	 
 	// get Questions
 	@GetMapping("/")
 	public ResponseEntity<?> questions(){
@@ -59,10 +59,13 @@ public class QuestionController {
 	public ResponseEntity<?> getQuestionsofQuiz(@PathVariable("qid") Long qid){
 		Quiz quiz = this.quizService.getQuiz(qid);
 		Set<Question> questions=quiz.getQuestions();
-		List list= new ArrayList(questions);
+		List<Question> list= new ArrayList<>(questions);
 		if(list.size()>Integer.parseInt(quiz.getNumberofQuestions())){
 			list=list.subList(0, Integer.parseInt(quiz.getNumberofQuestions()+1));
 		}
+		list.forEach((q)->{
+			q.setAnswer("");
+		});
 		Collections.shuffle(list);
 		return ResponseEntity.ok(list);
 	}

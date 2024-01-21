@@ -15,6 +15,8 @@ import { AddQuestion } from "../Pages/AdminPages/AddQuestion"
 import { NormalUser } from "../Pages/UserPages/NormalUser"
 import { StartQuiz } from "../Pages/UserPages/StartQuiz"
 import { Quiz } from "../Pages/UserPages/Quiz"
+import { Result } from "../Pages/UserPages/Result"
+import { BlanckPage } from "../Pages/UserPages/BlanckPage"
 
 
 
@@ -37,6 +39,8 @@ export const AllRoutes = () => {
                 <Route path="/user/:data" element={<NormalUser/>}></Route>
                 <Route path="/user/start/:data" element={<StartQuiz/>}></Route>
                 <Route path="/user/quiz/:data" element={<Quiz/>}></Route>
+                <Route path="/user/quiz/quizresult" element={<Result/>}></Route>
+                <Route path="/blank" element={<BlanckPage/>}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
         </main>

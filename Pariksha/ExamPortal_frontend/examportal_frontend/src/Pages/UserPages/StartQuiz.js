@@ -10,7 +10,7 @@ export const StartQuiz = () => {
 const navigate=useNavigate()
     async function getQuiz(){
     const response=await axios.get(`/quiz/${data}`);
-    console.log(response.data.category.title);
+    // console.log(response.data.category.title);
     setquiztitle(response.data.category.title)
     setquizQuestion(response.data.numberofQuestions)
     }

@@ -40,9 +40,9 @@ const Stopwatch = () => {
 
     useEffect(() => {
         setprogress(Math.floor(100 - time / 10 * 100));
-        console.log(progress)
+        // console.log(progress)
         if (progress >= 100) {
-            console.log(progress)
+            // console.log(progress)
             setShowModal1(true);
             setTime(0);
            setIsRunning(false)

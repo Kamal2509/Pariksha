@@ -1,5 +1,8 @@
 package Exam.ExamPortal.model.exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -7,24 +10,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long quesid;
-	
+
 	@Column(length = 5000)
-	 private String content;
-	 private String image;
-	 
-	 private String option1;
-	 private String option2;
-	 private String option3;
-	 private String option4;
-	 
-	 private String answer;
-	
+	private String content;
+	private String image;
+
+	private String option1;
+	private String option2;
+	private String option3;
+	private String option4;
+
+	private String answer;
+
+	@Transient
+	private String selectAnswer;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Quiz quiz;
 
@@ -88,10 +95,12 @@ public class Question {
 		this.option4 = option4;
 	}
 
+//	@JsonIgnore
 	public String getAnswer() {
 		return answer;
 	}
 
+//	@JsonProperty("answer")
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
@@ -104,6 +113,12 @@ public class Question {
 		this.quiz = quiz;
 	}
 
-	
-	
+	public String getSelectAnswer() {
+		return selectAnswer;
+	}
+
+	public void setSelectAnswer(String selectAnswer) {
+		this.selectAnswer = selectAnswer;
+	}
+
 }

@@ -2,6 +2,7 @@ package Exam.ExamPortal.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Exam.ExamPortal.Service.CategoryService;
+import Exam.ExamPortal.Service.QuestionService;
 import Exam.ExamPortal.Service.QuizService;
 import Exam.ExamPortal.model.exam.Category;
 import Exam.ExamPortal.model.exam.Question;
@@ -30,6 +33,9 @@ public class QuizController {
 	private QuizService quizService;
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	// add a new quiz
 	@PostMapping("/")
@@ -75,9 +81,32 @@ public class QuizController {
 	//evaluate Quiz
 	
 	@PostMapping("/evaluateQuiz")
-	public ResponseEntity<?> evaluateQuiz(@RequestBody List<Question> questions ){
+	public ResponseEntity<?> evaluateQuiz(@RequestBody List<Question>questions){
 		System.out.println(questions);
-		return ResponseEntity.ok("got questions with answer");
+		double marksGot=0;
+		int correctAnswers=0;
+		int attemped=0;
+		
+		for(Question q:questions){
+			Question question =this.questionService.getQuestion(q.getQuesid());
+			if(question.getAnswer().trim().equals(q.getSelectAnswer())) {
+				correctAnswers++;
+				
+				
+				double marksSingle= Double.parseDouble(questions.get(0).getQuiz().getMaxMarks())/questions.size();
+				marksGot+=marksSingle;
+				
+			}
+			
+			
+			
+			if(q.getSelectAnswer()!=null) {
+				attemped++;
+			}
+		}
+		
+		Map<String, Object>map= Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attemped",attemped);
+		return ResponseEntity.ok(map);
 	}
 	
 	

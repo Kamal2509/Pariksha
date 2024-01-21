@@ -5,12 +5,14 @@ import { SideNavbar } from '../../Components/SideNavbar'
 import { SideNavbarUser } from '../../Components/SideNavbarUser'
 import Stopwatch from '../../Components/Stopwatch'
 import Feedback from './Feedback'
+import { Result } from './Result'
 
 export const Quiz = () => {
     const { data } = useParams();
     const [updateui, setupdateui] = useState(false);
     const [Questions, setQuestions] = useState([]);
     const [Questions1, setQuestions1] = useState([]);
+    const[showResult1,setshowResult1]=useState(false);
     const navigate = useNavigate();
   
     async function getQuizQues() {
@@ -38,17 +40,21 @@ export const Quiz = () => {
             console.log(objectIndex);
             // If the object is found, add a new key 'newKey' with value 'newValue'
             if (objectIndex !== -1) {
-                const updatedObject = { ...prevArray[objectIndex], SelectAns: `${event.target.value}` };
+                const updatedObject = { ...prevArray[objectIndex], selectAnswer: `${event.target.value}` };
                 const newArray = [...prevArray];
                 newArray[objectIndex] = updatedObject;
-                console.log(newArray);
+                // console.log(newArray);
                 return newArray;
 
             }
         });
 
     };
-
+    function submitquiz() {
+        setshowResult1(!showResult1)
+        // navigate('/blank')
+        
+    }
     return (
         <section className="bg-gray-50 dark:bg-gray-900 min-w-full max-w-screen-2xl  min-h-screen">
             <div className='fixed'>
@@ -100,11 +106,12 @@ export const Quiz = () => {
 
                     </div>
                 ))}
-                <div className="p-2 text-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex items-center justify-center">
+                <div onClick={submitquiz} className="p-2 text-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex items-center justify-center">
                     <button type="submit" className="text-white bg-primary-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-0 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit Quiz</button>
                 </div>
             </div>
-          
+            {showResult1 ?  <Result ques={Questions1}/> : null}
+         
             
         </section >
     )
